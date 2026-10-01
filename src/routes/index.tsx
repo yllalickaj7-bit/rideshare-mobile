@@ -1,24 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Car } from "lucide-react";
+import { udhetimet } from "@/lib/udhetimet";
+import { KartaUdhetimi } from "@/components/KartaUdhetimi";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "AAB Rideshare — Udhëtime për Kolegjin AAB" },
+      { name: "description", content: "Gjej udhëtime të përbashkëta drejt Kolegjit AAB për studentë dhe profesorë." },
+      { property: "og:title", content: "AAB Rideshare — Udhëtime për Kolegjin AAB" },
+      { property: "og:description", content: "Gjej udhëtime të përbashkëta drejt Kolegjit AAB." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="mx-auto min-h-screen max-w-md px-5 pb-10 pt-8">
+      <header className="mb-8">
+        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+          <Car className="h-6 w-6" />
+        </div>
+        <p className="text-sm font-medium text-primary">AAB College Rideshare</p>
+        <h1 className="mt-1 text-3xl font-bold leading-tight text-foreground">Udhëtimet drejt AAB sot</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Për studentë dhe profesorë. Zgjidh një udhëtim dhe kërko vend.</p>
+      </header>
+      <section className="space-y-4">
+        {udhetimet.map((u) => <KartaUdhetimi key={u.id} udhetim={u} />)}
+      </section>
+    </main>
   );
 }

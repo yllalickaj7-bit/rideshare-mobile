@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UdhetimiIdIndexRouteImport } from './routes/udhetimi.$id.index'
+import { Route as UdhetimiIdKerkesaRouteImport } from './routes/udhetimi.$id.kerkesa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UdhetimiIdIndexRoute = UdhetimiIdIndexRouteImport.update({
+  id: '/udhetimi/$id/',
+  path: '/udhetimi/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UdhetimiIdKerkesaRoute = UdhetimiIdKerkesaRouteImport.update({
+  id: '/udhetimi/$id/kerkesa',
+  path: '/udhetimi/$id/kerkesa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/udhetimi/$id/kerkesa': typeof UdhetimiIdKerkesaRoute
+  '/udhetimi/$id/': typeof UdhetimiIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/udhetimi/$id/kerkesa': typeof UdhetimiIdKerkesaRoute
+  '/udhetimi/$id': typeof UdhetimiIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/udhetimi/$id/kerkesa': typeof UdhetimiIdKerkesaRoute
+  '/udhetimi/$id/': typeof UdhetimiIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/udhetimi/$id/kerkesa' | '/udhetimi/$id/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/udhetimi/$id/kerkesa' | '/udhetimi/$id'
+  id: '__root__' | '/' | '/udhetimi/$id/kerkesa' | '/udhetimi/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  UdhetimiIdKerkesaRoute: typeof UdhetimiIdKerkesaRoute
+  UdhetimiIdIndexRoute: typeof UdhetimiIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/udhetimi/$id/': {
+      id: '/udhetimi/$id/'
+      path: '/udhetimi/$id'
+      fullPath: '/udhetimi/$id/'
+      preLoaderRoute: typeof UdhetimiIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/udhetimi/$id/kerkesa': {
+      id: '/udhetimi/$id/kerkesa'
+      path: '/udhetimi/$id/kerkesa'
+      fullPath: '/udhetimi/$id/kerkesa'
+      preLoaderRoute: typeof UdhetimiIdKerkesaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  UdhetimiIdKerkesaRoute: UdhetimiIdKerkesaRoute,
+  UdhetimiIdIndexRoute: UdhetimiIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
