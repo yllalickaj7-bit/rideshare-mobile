@@ -3,13 +3,13 @@ Yll ALickaj
 **Shkurtesat:** MVP (Minimum Viable Product – produkti minimal i përdorshëm); AI (Artificial Intelligence – inteligjencë artificiale).
 
 ## 1. Problemi
-[PLOTËSO] Çfarë vështirësie kanë studentët që udhëtojnë për në AAB?
+ Çfarë vështirësie kanë studentët që udhëtojnë për në AAB?
 
 Shume studente gjdo dite hargjojne shume kohe dhe humbin shume ligjerata duke udhetuar e nderruar shume autobus apo duke pritur ata , 
 poashtu shume student pergjdo dite shkojne per AAB me makina me vende te lira te cilat mund te mbushen me njerez qe kane nevoje .
 
 ## 2. Përdoruesit
-[PLOTËSO] Çfarë dëshiron shoferi? Çfarë dëshiron udhëtari?
+Çfarë dëshiron shoferi? Çfarë dëshiron udhëtari?
 
 Udhetari deshiron nje ride te shpejte dhe korrekte drejt AAB , shoferi deshiron shoqeri gjate rruges dhe ti bej mire dikujt .
 
