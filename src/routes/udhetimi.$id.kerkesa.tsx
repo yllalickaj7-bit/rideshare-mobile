@@ -32,7 +32,7 @@ function Kerkesa() {
           <Hourglass className="h-10 w-10" />
         </span>
       </div>
-      <span className="rounded-full border border-warning/30 bg-warning/15 px-3 py-1 text-xs font-semibold text-warning">Në pritje</span>
+      <span className="rounded-full border border-warning/30 bg-warning/15 px-3 py-1 text-xs font-semibold text-warning">Simulim: Në pritje</span>
       <h1 className="mt-4 text-2xl font-bold text-foreground">Kërkesa u dërgua</h1>
       <p className="mt-2 text-sm text-muted-foreground">
         Shoferi {udhetim.shoferi} do të konfirmojë vendin tuaj për udhëtimin {udhetim.nisja} → AAB në {udhetim.ora}.
