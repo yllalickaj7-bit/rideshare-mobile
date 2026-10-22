@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
@@ -16,6 +17,7 @@ export default async function Home() {
   return (
     <main>
       <h1>RideShare · Udhëtimet për AAB</h1>
+      <p><Link href="/panel">Hyr / Paneli im</Link></p>
       <p>Zgjidh një nisje dhe lexo detajet para kërkesës.</p>
       {gabim ? (
         <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
