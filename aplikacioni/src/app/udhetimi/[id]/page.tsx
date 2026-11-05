@@ -22,9 +22,12 @@ export default async function Detajet({ params }: { params: Promise<{ id: string
           Kërko vend
         </Link>
       ) : (
-        <button className="action" disabled>
-          Nuk ka vende të lira
-        </button>
+        <>
+          <p role="status">Me 0 vende nuk premtojmë rezervim.</p>
+          <button className="action" disabled aria-disabled="true">
+            Nuk ka vende të lira
+          </button>
+        </>
       )}
     </main>
   );
