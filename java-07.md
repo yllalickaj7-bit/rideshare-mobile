@@ -5,7 +5,7 @@ GitHub: yllalickaj7-bit
 Kodi: P7-825
 Skenari i zgjedhur (numri dhe titulli, nga Rastet 1–5): Rasti 2 · Pa vende
 ID i udhëtimit në projektin tim: 2
-Të dhënat fiktive të rastit: Nisja Pejë → AAB, ora fillestare 10:15, 1 vend fillestar, ora për provën e re 10:20, rasti kufitar 0 vende.
+Të dhënat fiktive të rastit: Pejë → AAB, 10:15, 1 vende. Ora për provën e re: 10:20.
 
 ## Parashikimi
 Në listë pres të shoh udhëtimin ID 2 me orën dhe numrin e vendeve. Te detajet pres të njëjtat vlera. Kur vendet bëhen 0, pres që butoni "Kërko vend" të zhduket, të shfaqet "Nuk ka vende të lira" dhe aplikacioni të mos premtojë rezervim.
@@ -19,8 +19,8 @@ Skedari: aplikacioni/src/app/udhetimi/[id]/page.tsx
 Ky skedar shfaq detajet e udhëtimit të zgjedhur sipas ID-së dhe vendos nëse shfaqet lidhja "Kërko vend". Shtova mesazhin "Me 0 vende nuk premtojmë rezervim." pranë butonit joaktiv, që përdoruesi të kuptojë qartë pse nuk ka kërkesë dhe që aplikacioni të mos premtojë vend të lirë.
 
 ## Versionet
-Para: https://github.com/yllalickaj7-bit/rideshare-mobile/commit/e8cc7c4c7ae2839a337cb5753b0238abc3399c5f
-Pas: https://github.com/yllalickaj7-bit/rideshare-mobile/commit/82fdad0b975fe17e437d31a63ebcde584b42d6ea
+Para: https://github.com/yllalickaj7-bit/rideshare-mobile/commit/82fdad0b975fe17e437d31a63ebcde584b42d6ea
+Pas: https://github.com/yllalickaj7-bit/rideshare-mobile/commit/31b0555fd1b509d7eae3d94ffd54f4855f7262a3
 
 ## Provat që bëra
 ### Prova 1
