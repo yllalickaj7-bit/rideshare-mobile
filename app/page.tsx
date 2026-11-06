@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { KartaUdhetimi } from "@/components/KartaUdhetimi";
-import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
-import { profiliIm, type Profil } from "@/lib/lejet";
+import { KartaUdhetimi } from "../components/KartaUdhetimi";
+import { lexoUdhetimet, type Udhetim } from "../lib/udhetimet";
+import { profiliIm, type Profil } from "../lib/lejet";
 
 export const dynamic = "force-dynamic";
 

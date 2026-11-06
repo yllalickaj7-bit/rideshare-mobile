@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Hyrja from "@/components/Hyrja";
-import { profiliIm, type Profil } from "@/lib/lejet";
+import Hyrja from "../../components/Hyrja";
+import { profiliIm, type Profil } from "../../lib/lejet";
 import { ruajOren } from "./actions";
 
 export const dynamic = "force-dynamic";

@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { ndryshoOren } from "@/lib/lejet";
+import { ndryshoOren } from "../../lib/lejet";
 
 export async function ruajOren(formData: FormData) {
   let mesazh: string;

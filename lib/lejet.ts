@@ -1,7 +1,7 @@
 import "server-only";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { getSql } from "@/lib/db";
+import { authOptions } from "./auth";
+import { getSql } from "./db";
 
 export type Profil = { id: string; emri: string; roli: "udhetar" | "shofer" };
 

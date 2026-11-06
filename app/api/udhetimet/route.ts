@@ -1,4 +1,4 @@
-import { lexoUdhetimet } from "@/lib/udhetimet";
+import { lexoUdhetimet } from "../../../lib/udhetimet";
 
 export const dynamic = "force-dynamic";
 
