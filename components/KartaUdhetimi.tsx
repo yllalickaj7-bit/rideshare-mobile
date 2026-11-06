@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Udhetim } from "@/lib/udhetimet";
+import type { Udhetim } from "../lib/udhetimet";
 
 export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
   const niveli = udhetim.vende === 0 ? "plot" : udhetim.vende <= 1 ? "pak" : "lira";

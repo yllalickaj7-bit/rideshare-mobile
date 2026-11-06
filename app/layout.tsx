@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Pwa from "@/components/Pwa";
+import Pwa from "../components/Pwa";
 
 export const metadata: Metadata = {
   title: "RideShare AAB",
