@@ -2,6 +2,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
 import { gjejUdhetimin } from "@/lib/udhetimet";
+import VendtakimiArtes from "@/components/VendtakimiArtes";
 
 export default async function Detajet({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -17,6 +18,7 @@ export default async function Detajet({ params }: { params: Promise<{ id: string
       <p>Ora: {udhetim.ora}</p>
       <p>Vendtakimi: {udhetim.vendtakimi}</p>
       <p>Vende të lira: {udhetim.vende}</p>
+      <VendtakimiArtes />
       {udhetim.vende > 0 ? (
         <Link className="action" href={`/udhetimi/${id}/kerkesa`}>
           Kërko vend
