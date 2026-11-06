@@ -155,3 +155,39 @@
   &:hover { border-color: color-mix(in oklab, var(--primary) 50%, transparent); }
 }
 body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+
+:root {
+  --primary-glow: oklch(0.8 0.14 195);
+  --gradient-hero: linear-gradient(135deg, var(--primary), var(--primary-glow));
+}
+@theme inline {
+  --color-primary-glow: var(--primary-glow);
+}
+body {
+  background:
+    radial-gradient(60rem 30rem at 110% -10%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%),
+    radial-gradient(40rem 24rem at -20% 20%, color-mix(in oklab, var(--primary-glow) 14%, transparent), transparent 60%),
+    var(--background);
+  background-attachment: fixed;
+}
+@utility glass {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+}
+@utility text-gradient {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility bg-hero {
+  background: var(--gradient-hero);
+}
+@utility fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
