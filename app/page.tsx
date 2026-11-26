@@ -2,6 +2,7 @@ import Link from "next/link";
 import { KartaUdhetimi } from "../components/KartaUdhetimi";
 import { lexoUdhetimet, type Udhetim } from "../lib/udhetimet";
 import { profiliIm, type Profil } from "../lib/lejet";
+import { preferuaratEMia } from "../lib/preferuarat";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +18,10 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
     gabim = true;
   }
   try { profili = await profiliIm(); } catch { profili = null; }
+  let tëRuajturat: string[] = [];
+  if (profili) {
+    try { tëRuajturat = await preferuaratEMia(); } catch { tëRuajturat = []; }
+  }
 
   const filtruar = udhetimet.filter(
     (u) => u.nisja.toLowerCase().includes(q.toLowerCase()) && (!lira || u.vende > 0),
@@ -80,7 +85,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
       ) : (
         <div className="trip-list">
           {filtruar.map((udhetim) => (
-            <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
+            <KartaUdhetimi key={udhetim.id} udhetim={udhetim} eRuajtur={tëRuajturat.includes(udhetim.id)} />
           ))}
         </div>
       )}

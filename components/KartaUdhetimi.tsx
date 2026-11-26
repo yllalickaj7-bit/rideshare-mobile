@@ -1,12 +1,13 @@
 import Link from "next/link";
 import type { Udhetim } from "../lib/udhetimet";
 
-export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
+export function KartaUdhetimi({ udhetim, eRuajtur = false }: { udhetim: Udhetim; eRuajtur?: boolean }) {
   const niveli = udhetim.vende === 0 ? "plot" : udhetim.vende <= 1 ? "pak" : "lira";
   return (
     <article className="trip-card">
       <div className="trip-head">
         <h2>
+          {eRuajtur && <span title="E ruajtur" aria-label="E ruajtur">★ </span>}
           {udhetim.nisja} <span className="arrow">→</span> {udhetim.destinacioni}
         </h2>
         <span className={`badge ${niveli}`}>

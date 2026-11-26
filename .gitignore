@@ -33,3 +33,7 @@ dist-ssr
 .neon
 .env.local
 aplikacioni/.env.local
+
+# Fshehtësira lokale (Java 8): asnjë .env nuk futet në GitHub
+.env
+.env.*

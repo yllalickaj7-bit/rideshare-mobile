@@ -2,24 +2,30 @@ export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gjejUdhetimin } from "@/lib/udhetimet";
+import { gjendjaLive } from "@/lib/kerkesat";
+import { profiliIm } from "@/lib/lejet";
+import GjendjaLive from "@/components/GjendjaLive";
 
 export default async function Kerkesa({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const udhetim = await gjejUdhetimin(id);
   if (!udhetim) notFound();
 
+  let kycur = false;
+  let fillimi = { vende: udhetim.vende, ora: udhetim.ora, kerkesa: null as null | "ne_pritje" | "pranuar" | "refuzuar" };
+  try {
+    kycur = (await profiliIm()) !== null;
+    if (kycur) fillimi = (await gjendjaLive(id)) ?? fillimi;
+  } catch {
+    // mbetet pamja publike
+  }
+
   return (
     <main>
       <Link href={`/udhetimi/${id}`}>← Kthehu te detajet</Link>
-      {udhetim.vende > 0 ? (
-        <>
-          <h1>Simulim: Në pritje</h1>
-          <p>Kërkesa për {udhetim.nisja} nuk është dërguar te shoferi.</p>
-          <p>Ruajtjen dhe konfirmimin real do t’i shtojmë më vonë.</p>
-        </>
-      ) : (
-        <h1>Nuk ka vende të lira.</h1>
-      )}
+      <h1>Kërko vend: {udhetim.nisja} → {udhetim.destinacioni}</h1>
+      <p>Kërkesa ruhet dhe shoferi e shikon te paneli i tij. Statusi përditësohet vetë çdo 5 sekonda.</p>
+      <GjendjaLive udhetimId={id} fillimi={fillimi} kycur={kycur} mod="kerkese" />
       <p>
         <Link href="/">Kthehu te lista</Link>
       </p>
