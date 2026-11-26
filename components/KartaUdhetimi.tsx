@@ -18,6 +18,10 @@ export function KartaUdhetimi({ udhetim, eRuajtur = false }: { udhetim: Udhetim;
         <div><dt>🕗 Ora</dt><dd>{udhetim.ora}</dd></div>
         <div><dt>📍 Vendtakimi</dt><dd>{udhetim.vendtakimi}</dd></div>
       </dl>
+      <div className={`vendet ${niveli}`} aria-hidden="true">
+        {[0, 1, 2, 3].map((i) => <i key={i} className={i < udhetim.vende ? "on" : ""} />)}
+        <span>{udhetim.vende === 0 ? "pa vende" : `${udhetim.vende} nga 4`}</span>
+      </div>
       <p className="sr-only">Vende të lira: {udhetim.vende}</p>
       <Link className="action" href={`/udhetimi/${udhetim.id}`}>
         Shiko detajet

@@ -25,7 +25,7 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
     return (
       <main>
         <h1>Paneli im</h1>
-        <p role="alert">{mesazhet.databaza}</p>
+        <p role="alert" className="alert">{mesazhet.databaza}</p>
         <Link href="/panel">Provo përsëri</Link>
       </main>
     );
@@ -39,7 +39,8 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
   return (
     <main>
       <h1>Paneli im</h1>
-      {m && mesazhet[m] && <p role="status">{mesazhet[m]}</p>}
+      {m && mesazhet[m] && <p role="status" className="flash">{mesazhet[m]}</p>}
+      <div className="karte">
       {!p ? (
         <p>Lista është publike. Për panelin hyr me llogarinë tënde GitHub.</p>
       ) : (
@@ -48,9 +49,10 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
           <p>ID ime GitHub: <code>{p.id}</code></p>
         </>
       )}
-      <Hyrja brenda={Boolean(p)} />
+      <p><Hyrja brenda={Boolean(p)} /></p>
+      </div>
       {p?.roli === "shofer" ? (
-        <form action={ruajOren}>
+        <form action={ruajOren} className="karte panel-form">
           <h2>Ndrysho orën e udhëtimit tim</h2>
           <input type="hidden" name="id" value="2" />
           <label htmlFor="ora">Ora e re</label>{" "}
@@ -59,22 +61,22 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
           <p>Formulari i laboratorit provon ID 2. Serveri verifikon pronarin edhe nëse ID ndryshohet.</p>
         </form>
       ) : (
-        p && <p>Si udhëtar mund të shohësh udhëtimet; nuk mund të ndryshosh orën e shoferit.</p>
+        p && <p className="karte">Si udhëtar mund të shohësh udhëtimet; nuk mund të ndryshosh orën e shoferit.</p>
       )}
       {p?.roli === "shofer" && (
-        <section>
+        <section className="karte">
           <h2>Kërkesat në pritje</h2>
           {kerkesat.length === 0 ? (
             <p>Nuk ka kërkesa në pritje.</p>
           ) : (
-            <ul>
+            <ul className="panel-list">
               {kerkesat.map((k) => (
                 <li key={k.id}>
                   {k.udhetari} · {k.nisja} → AAB · {k.ora}
                   <form action={pergjigjuKerkeses}>
                     <input type="hidden" name="id" value={k.id} />
                     <button type="submit" name="veprimi" value="prano" className="action small">Prano</button>{" "}
-                    <button type="submit" name="veprimi" value="refuzo" className="action small">Refuzo</button>
+                    <button type="submit" name="veprimi" value="refuzo" className="action small ghost">Refuzo</button>
                   </form>
                 </li>
               ))}
@@ -82,7 +84,7 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
           )}
         </section>
       )}
-      <p><Link href="/">Kthehu te udhëtimet</Link></p>
+      <p><Link href="/" className="mbrapa">← Kthehu te udhëtimet</Link></p>
     </main>
   );
 }

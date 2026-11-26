@@ -30,11 +30,15 @@ export default async function Detajet({ params }: { params: Promise<{ id: string
 
   return (
     <main>
-      <Link href="/">← Kthehu te lista</Link>
-      <h1>
-        {udhetim.nisja} – {udhetim.destinacioni}
-      </h1>
-      <p>Vendtakimi: {udhetim.vendtakimi}</p>
+      <Link href="/" className="mbrapa">← Kthehu te lista</Link>
+      <header className="udhetim-top">
+        <p className="eyebrow">Detajet e udhëtimit</p>
+        <h1>
+          {udhetim.nisja} – {udhetim.destinacioni}
+        </h1>
+        <div className="rruga" aria-hidden="true"><b>{udhetim.nisja}</b><i /><b>{udhetim.destinacioni}</b></div>
+        <p>📍 Vendtakimi: {udhetim.vendtakimi}</p>
+      </header>
       <GjendjaLive udhetimId={id} fillimi={fillimi} kycur={kycur} mod="detaje" />
       <RuajUdhetimin udhetimId={id} fillimisht={eRuajtur} kycur={kycur} />
       <VendtakimiArtes />

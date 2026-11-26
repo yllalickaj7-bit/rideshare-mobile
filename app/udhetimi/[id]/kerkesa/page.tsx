@@ -22,12 +22,15 @@ export default async function Kerkesa({ params }: { params: Promise<{ id: string
 
   return (
     <main>
-      <Link href={`/udhetimi/${id}`}>← Kthehu te detajet</Link>
-      <h1>Kërko vend: {udhetim.nisja} → {udhetim.destinacioni}</h1>
-      <p>Kërkesa ruhet dhe shoferi e shikon te paneli i tij. Statusi përditësohet vetë çdo 5 sekonda.</p>
+      <Link href={`/udhetimi/${id}`} className="mbrapa">← Kthehu te detajet</Link>
+      <header className="udhetim-top">
+        <p className="eyebrow">Kërkesë për vend</p>
+        <h1>Kërko vend: {udhetim.nisja} → {udhetim.destinacioni}</h1>
+        <p>Kërkesa ruhet dhe shoferi e shikon te paneli i tij. Statusi përditësohet vetë çdo 5 sekonda.</p>
+      </header>
       <GjendjaLive udhetimId={id} fillimi={fillimi} kycur={kycur} mod="kerkese" />
       <p>
-        <Link href="/">Kthehu te lista</Link>
+        <Link href="/" className="mbrapa">Kthehu te lista</Link>
       </p>
     </main>
   );
