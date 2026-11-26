@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Hyrja from "@/components/Hyrja";
 import { profiliIm, type Profil } from "@/lib/lejet";
-import { ruajOren } from "./actions";
+import { kerkesatNePritjePerShofer, type KerkeseNePritje } from "@/lib/kerkesat";
+import { ruajOren, pergjigjuKerkeses } from "./actions";
 
 export const dynamic = "force-dynamic";
 const mesazhet: Record<string, string> = {
@@ -10,6 +11,9 @@ const mesazhet: Record<string, string> = {
   fushe: "Shkruaj një orë të vlefshme, p.sh. 08:25. ID duhet të jetë 1, 2 ose 3.",
   ruajtur: "Ora u ruajt me sukses. Kontrollo listën dhe detajet.",
   databaza: "Nuk u lidhëm me databazën. Kontrollo Neon dhe provo përsëri.",
+  pranuar: "Kërkesa u pranua dhe vendi u zbrit me 1.",
+  refuzuar: "Kërkesa u refuzua.",
+  pa_vende: "Nuk ka vende të lira, kërkesa mbetet në pritje.",
 };
 
 export default async function Panel({ searchParams }: { searchParams: Promise<{ m?: string }> }) {
@@ -25,6 +29,12 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
         <Link href="/panel">Provo përsëri</Link>
       </main>
     );
+  }
+  let kerkesat: KerkeseNePritje[] = [];
+  try {
+    kerkesat = await kerkesatNePritjePerShofer();
+  } catch {
+    kerkesat = [];
   }
   return (
     <main>
@@ -51,8 +61,28 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
       ) : (
         p && <p>Si udhëtar mund të shohësh udhëtimet; nuk mund të ndryshosh orën e shoferit.</p>
       )}
+      {p?.roli === "shofer" && (
+        <section>
+          <h2>Kërkesat në pritje</h2>
+          {kerkesat.length === 0 ? (
+            <p>Nuk ka kërkesa në pritje.</p>
+          ) : (
+            <ul>
+              {kerkesat.map((k) => (
+                <li key={k.id}>
+                  {k.udhetari} · {k.nisja} → AAB · {k.ora}
+                  <form action={pergjigjuKerkeses}>
+                    <input type="hidden" name="id" value={k.id} />
+                    <button type="submit" name="veprimi" value="prano" className="action small">Prano</button>{" "}
+                    <button type="submit" name="veprimi" value="refuzo" className="action small">Refuzo</button>
+                  </form>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
       <p><Link href="/">Kthehu te udhëtimet</Link></p>
-      <p>Kërkesa për vend mbetet simulim këtë javë.</p>
     </main>
   );
 }
